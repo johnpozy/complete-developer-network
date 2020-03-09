@@ -1,0 +1,164 @@
+@import "~@developer-network/styles/functions";
+@import "~@developer-network/styles/variables";
+@import "~@developer-network/styles/mixins";
+
+:host {
+  position: relative;
+  display: block;
+
+  &.active {
+    .spinner-text {
+      position: relative;
+      z-index: 1;
+      visibility: hidden;
+    }
+
+    .spinner-figure {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &:not(.active) {
+    .spinner-figure {
+      display: none;
+    }
+  }
+}
+
+.spinner-figure {
+  position: relative;
+  width: ($font-size-base * $input-btn-line-height);
+  height: ($font-size-base * $input-btn-line-height);
+
+  &.spinner-lg {
+    width: ($font-size-lg * $input-btn-line-height-lg);
+    height: ($font-size-lg * $input-btn-line-height-lg);
+  }
+
+  &.spinner-sm {
+    width: ($font-size-sm * $input-btn-line-height-sm);
+    height: ($font-size-sm * $input-btn-line-height-sm);
+  }
+
+  > .dot {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    &::before {
+      display: block;
+      width: 15%;
+      height: 15%;
+      margin: 0 auto;
+      content: "";
+      background-color: currentColor;
+      border-radius: ($font-size-base * $input-btn-line-height);
+      animation: dotFadeDelay 1.2s infinite ease both;
+    }
+  }
+
+  > .dot2 {
+    transform: rotate(30deg);
+
+    &::before {
+      animation-delay: -1.1s;
+    }
+  }
+
+  > .dot3 {
+    transform: rotate(60deg);
+
+    &::before {
+      animation-delay: -1s;
+    }
+  }
+
+  > .dot4 {
+    transform: rotate(90deg);
+
+    &::before {
+      animation-delay: -.9s;
+    }
+  }
+
+  > .dot5 {
+    transform: rotate(120deg);
+
+    &::before {
+      animation-delay: -.8s;
+    }
+  }
+
+  > .dot6 {
+    transform: rotate(150deg);
+
+    &::before {
+      animation-delay: -.7s;
+    }
+  }
+
+  > .dot7 {
+    transform: rotate(180deg);
+
+    &::before {
+      animation-delay: -.6s;
+    }
+  }
+
+  > .dot8 {
+    transform: rotate(210deg);
+
+    &::before {
+      animation-delay: -.5s;
+    }
+  }
+
+  > .dot9 {
+    transform: rotate(240deg);
+
+    &::before {
+      animation-delay: -.4s;
+    }
+  }
+
+  > .dot10 {
+    transform: rotate(270deg);
+
+    &::before {
+      animation-delay: -.3s;
+    }
+  }
+
+  > .dot11 {
+    transform: rotate(300deg);
+
+    &::before {
+      animation-delay: -.2s;
+    }
+  }
+
+  > .dot12 {
+    transform: rotate(330deg);
+
+    &::before {
+      animation-delay: -.1s;
+    }
+  }
+}
+
+@keyframes dotFadeDelay {
+  0%,
+  39%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}

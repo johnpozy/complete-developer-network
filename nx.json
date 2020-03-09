@@ -1,0 +1,30 @@
+{
+  "npmScope": "developer-network",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "web": {
+      "tags": ["web"]
+    },
+    "api": {
+      "tags": ["api"]
+    },
+    "interfaces": {
+      "tags": ["interfaces"]
+    },
+    "models": {
+      "tags": ["models"]
+    },
+    "ui": {
+      "tags": ["ui"]
+    }
+  }
+}

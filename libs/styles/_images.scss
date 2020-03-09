@@ -1,0 +1,76 @@
+// stylelint-disable declaration-no-important, selector-type-no-unknown
+@import "~bootstrap-scss/images";
+
+.img-fluid {
+  max-width: 100% !important;
+}
+
+.img-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  border-radius: inherit;
+
+  > img,
+  > svg:not(.icon) {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+  }
+}
+
+.img-overlap {
+  display: flex;
+  align-items: center;
+
+  > lvc-ui-avatar {
+    > div {
+      border: 2px solid #fff;
+      box-shadow: none !important;
+    }
+
+    + lvc-ui-avatar {
+      margin-left: (map-get($map: $spacers, $key: 2) * -1);
+    }
+  }
+}
+
+.img-ratio-default,
+.img-ratio-16by9,
+.img-ratio-4by3 {
+  display: block;
+
+  > img,
+  > svg,
+  > video,
+  > .img-ratio-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  > video,
+  > .img-ratio-container {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Modifier class for default aspect ratio
+.img-ratio-default {
+  height: 0;
+  padding-bottom: 100%;
+}
+
+// Modifier class for 16:9 aspect ratio
+.img-ratio-16by9 {
+  height: 0;
+  padding-bottom: 56.25%;
+}
+
+// Modifier class for 4:3 aspect ratio
+.img-ratio-4by3 {
+  height: 0;
+  padding-bottom: 75%;
+}

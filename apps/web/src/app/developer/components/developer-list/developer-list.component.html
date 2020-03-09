@@ -1,0 +1,118 @@
+<ngx-datatable class="bootstrap datatable-flush"
+    [rows]="developers$ | async"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="64"
+    [limit]="20"
+    [loadingIndicator]="isRequestingUser$ | async"
+>
+    <ngx-datatable-column name="Username" prop="username" [canAutoResize]="false" [width]="180" [cellClass]="'text-truncate-none'">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="small text-uppercase font-weight-medium text-muted" (click)="sort" style="cursor: pointer;">
+                {{ column.name }}
+            </span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <div class="d-flex align-items-center">
+                <ui-avatar [randomColor]="true" width="2.5rem" height="2.5rem">
+                    {{ value?.substring(0, 2) }}
+                </ui-avatar>
+                <div class="ml-2">{{ value }}</div>
+            </div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Email" prop="email">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="small text-uppercase font-weight-medium text-muted" (click)="sort" style="cursor: pointer;">
+                {{ column.name }}
+            </span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <a href="javascript:;">{{ value }}</a>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Phone" prop="phone">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="small text-uppercase font-weight-medium text-muted" (click)="sort" style="cursor: pointer;">
+                {{ column.name }}
+            </span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>{{ value | mask:'(999)-9999999' }}</ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Skillsets" prop="skillsets" [minWidth]="140" [headerClass]="'d-none d-xxl-flex'" [cellClass]="'d-none d-xxl-flex'">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="small text-uppercase font-weight-medium text-muted" (click)="sort" style="cursor: pointer;">
+                {{ column.name }}
+            </span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <div *ngIf="(value && value.length > 0)">
+                <span *ngIf="value.length > 0 && value[0]" class="badge bg-primary-200 mr-1 text-uppercase">{{ value[0]?.name }}</span>
+                <ng-template #popTemplate>
+                    <ng-container *ngFor="let item of value; let index = index;">
+                        <ng-container *ngIf="index >= 1">
+                            <span class="badge bg-primary-200 mr-1 my-1 text-uppercase">{{ value[index]?.name }}</span>
+                        </ng-container>
+                    </ng-container>
+                </ng-template>
+                <a href="javascript:;" *ngIf="value.length > 1 && value[1]"
+                    [popover]="popTemplate"
+                    container="body"
+                    triggers="hover"
+                >+{{ value.length - 1 }} More</a>
+            </div>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Hobby" prop="hobby" [sortable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="small text-uppercase font-weight-medium text-muted" (click)="sort" style="cursor: pointer;">
+                {{ column.name }}
+            </span>
+        </ng-template>
+        <ng-template let-value="value" ngx-datatable-cell-template>
+            <ng-container *ngIf="value else noData;">{{ value }}</ng-container>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="" prop="" [cellClass]="'justify-content-end text-truncate-none'" [sortable]="false">
+        <ng-template let-column="column" ngx-datatable-header-template let-sort="sortFn">
+            <span class="text-uppercase" (click)="sort" style="cursor: pointer;">{{ column.name }}</span>
+        </ng-template>
+        <ng-template let-row="row" ngx-datatable-cell-template>
+            <div class="btn-group" dropdown>
+                <button dropdownToggle type="button" class="btn btn-icon btn-link">
+                    <svg class="icon fill-primary-500" viewBox="0 0 24 24">
+                        <path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" stroke="none" />
+                    </svg>
+                </button>
+                <ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a class="dropdown-item" href="javascript:;" (click)="showDeveloperUpdate(row)">
+                            <span class="d-flex align-items-center">
+                                <svg class="icon cursor-pointer fill-gray-400" viewBox="0 0 24 24">
+                                    <path d="M14.06,9L15,9.94L5.92,19H5V18.08L14.06,9M17.66,3C17.41,3 17.15,3.1 16.96,3.29L15.13,5.12L18.88,8.87L20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18.17,3.09 17.92,3 17.66,3M14.06,6.19L3,17.25V21H6.75L17.81,9.94L14.06,6.19Z" stroke="none" />
+                                </svg>
+                                <span class="ml-2 mr-1">Update</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="javascript:;" (click)="showDeveloperDelete(row)">
+                            <span class="d-flex align-items-center">
+                                <svg class="icon cursor-pointer fill-danger-400" viewBox="0 0 24 24">
+                                    <path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" stroke="none" />
+                                </svg>
+                                <span class="ml-2 mr-1">Delete</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </ng-template>
+    </ngx-datatable-column>
+</ngx-datatable>
+
+<ng-template #noData>
+    <span class="text-muted">N/A</span>
+</ng-template>

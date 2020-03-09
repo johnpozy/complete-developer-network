@@ -1,0 +1,30 @@
+// stylelint-disable selector-no-qualifying-type
+
+@import "~bootstrap-scss/buttons";
+
+.btn {
+  // background-clip: padding-box;
+}
+
+.btn-icon {
+  padding: $input-btn-padding-y;
+}
+
+.btn-file {
+  position: relative;
+
+  > input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    opacity: 0;
+  }
+}
+
+.btn-white {
+  @include button-variant($white, $border-color, rgba($black, .05), rgba($black, .05), rgba($black, .05), $border-color);
+}

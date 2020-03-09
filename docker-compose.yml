@@ -1,0 +1,55 @@
+version: '3'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  mariadb:
+    driver: local
+  phpmyadmin:
+    driver: local
+
+services:
+
+### MariaDB ##############################################
+    mariadb:
+      build:
+        context: ./docker/mariadb
+        args:
+          - http_proxy
+          - https_proxy
+          - no_proxy
+          - MARIADB_VERSION=latest
+      volumes:
+        - ./docker/data/mariadb:/var/lib/mysql
+        - ./docker/mariadb/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      ports:
+        - "3306:3306"
+      environment:
+        - TZ=UTC
+        - MYSQL_DATABASE=cdn
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=password
+        - MYSQL_ROOT_PASSWORD=password
+      networks:
+        - backend
+
+### phpMyAdmin ###########################################
+    phpmyadmin:
+      build: ./docker/phpmyadmin
+      environment:
+        - PMA_ARBITRARY=1
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=password
+        - MYSQL_ROOT_PASSWORD=password
+      ports:
+        - "8080:80"
+      depends_on:
+        - "mariadb"
+      networks:
+        - frontend
+        - backend
+

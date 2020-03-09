@@ -1,0 +1,74 @@
+<form novalidate [formGroup]="formCreate" (submit)="createDeveloper()">
+    <div class="modal-header align-items-center">
+        <h4 class="modal-title pull-left">Create New Developer</h4>
+        <a class="text-muted" href="javascript:;" (click)="modalRef.hide()">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" stroke="none" />
+            </svg>
+        </a>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label class="small font-weight-medium text-muted">USERNAME <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="username">
+        </div>
+        <div class="form-group">
+            <label class="small font-weight-medium text-muted">EMAIL <span class="text-danger">*</span></label>
+            <input type="email" class="form-control" formControlName="email">
+        </div>
+        <div class="form-group">
+            <label class="small font-weight-medium text-muted">PHONE <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="phone">
+        </div>
+        <div class="form-group">
+            <label class="small font-weight-medium text-muted">HOBBY</label>
+            <input type="text" class="form-control" formControlName="hobby">
+        </div>
+        <div class="form-group mb-0">
+            <div class="d-flex justify-content-between">
+                <label class="small font-weight-medium text-muted">SKILLSETS <span class="text-danger">*</span></label>
+                <a href="javascript:;" (click)="addSkillset()" tooltip="Add skill" container="body" placement="left">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path stroke="none" d="M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="card shadow-none">
+                <table class="table table-striped table-flush table-sm">
+                    <thead>
+                        <tr>
+                            <th class="small text-muted">SKILLSET NAME</th>
+                            <th class="small text-muted" [style.width.px]="70">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container formArrayName="skillsets">
+                            <ng-container *ngFor="let skillset of formCreate.controls['skillsets']['controls']; let index = index; let first = first;">
+                                <ng-container [formGroupName]="index">
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" formControlName="name">
+                                        </td>
+                                        <td class="text-right">
+                                            <a href="javascript:;" class="text-danger" (click)="removeSkillset(index)" *ngIf="!first" tooltip="Remove skill" container="body" placement="left">
+                                                <svg class="icon" viewBox="0 0 24 24">
+                                                    <path stroke="none" d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" />
+                                                </svg>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-end">
+        <a href="javascript:;" class="btn btn-link" (click)="modalRef.hide()">Close</a>
+        <button type="submit" class="btn btn-primary" [disabled]="formCreate.invalid || (isFormCreateLoading$ | async)">
+            <ui-spinner [class.active]="isFormCreateLoading$ | async">Create</ui-spinner>
+        </button>
+    </div>
+</form>

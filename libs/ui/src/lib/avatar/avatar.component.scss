@@ -1,0 +1,34 @@
+// stylelint-disable selector-pseudo-element-no-unknown, selector-no-qualifying-type, declaration-no-important
+
+:host {
+  position: relative;
+  display: block;
+  transform: rotate(45deg);
+
+  > div {
+    &.rounded {
+      border-radius: 36% !important;
+    }
+
+    > div {
+      // margin-top: -1px;
+      transform: rotate(-45deg);
+    }
+  }
+
+  ::ng-deep .icon {
+    margin-top: 1px;
+  }
+
+  ::ng-deep .indicator {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 1;
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+  }
+}

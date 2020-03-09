@@ -1,0 +1,20 @@
+// stylelint-disable declaration-no-important
+
+@import "~bootstrap-scss/utilities/borders";
+
+.rounded-bottom-0 {
+  border-bottom-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+@each $color, $value in $theme-colors {
+  @include border-variant(".border-#{$color}-100", theme-color-level($color, -12));
+  @include border-variant(".border-#{$color}-200", theme-color-level($color, -9));
+  @include border-variant(".border-#{$color}-300", theme-color-level($color, -6));
+  @include border-variant(".border-#{$color}-400", theme-color-level($color, -3));
+  @include border-variant(".border-#{$color}-500", theme-color-level($color, 0));
+  @include border-variant(".border-#{$color}-600", theme-color-level($color, 3));
+  @include border-variant(".border-#{$color}-700", theme-color-level($color, 6));
+  @include border-variant(".border-#{$color}-800", theme-color-level($color, 9));
+  @include border-variant(".border-#{$color}-900", theme-color-level($color, 12));
+}

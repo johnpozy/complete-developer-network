@@ -1,0 +1,60 @@
+// stylelint-disable selector-max-class, selector-type-no-unknown, selector-no-qualifying-type
+
+@import "~@developer-network/styles/functions";
+@import "~@developer-network/styles/variables";
+@import "~@developer-network/styles/mixins";
+
+@import "~ngx-toastr/toastr.css";
+
+.toast-container {
+  .ngx-toastr {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    padding: $alert-padding-y $alert-padding-x;
+    color: inherit;
+    background-color: $white;
+    border: $border-width solid $border-color;
+    border-radius: $border-radius;
+    box-shadow: 0 7px 9px -4px lighten($color: $border-color, $amount: 50), 0 14px 21px 2px lighten($color: $border-color, $amount: 50), 0 5px 26px 4px lighten($color: $border-color, $amount: 50);
+
+    @include hover-focus {
+      box-shadow: 0 7px 9px -4px lighten($color: $border-color, $amount: 30), 0 14px 21px 2px lighten($color: $border-color, $amount: 30), 0 5px 26px 4px lighten($color: $border-color, $amount: 30);
+    }
+
+    .toast-icon {
+      display: none;
+    }
+
+    .toast-title {
+      margin-bottom: map-get($map: $spacers, $key: 1);
+    }
+
+    &.toast-success {
+      color: theme-color-level("success", $alert-color-level);
+      background-color: theme-color-level("success", $alert-bg-level);
+      background-image: none;
+      border-color: theme-color-level("success", $alert-border-level);
+
+      .toast-icon.toast-icon-success {
+        display: flex;
+      }
+    }
+
+    &.toast-error {
+      color: theme-color-level("danger", $alert-color-level);
+      background-color: theme-color-level("danger", $alert-bg-level);
+      background-image: none;
+      border-color: theme-color-level("danger", $alert-border-level);
+
+      .toast-icon.toast-icon-error {
+        display: flex;
+      }
+    }
+  }
+}
+
+.toast-top-right {
+  top: map-get($map: $spacers, $key: 3);
+  right: map-get($map: $spacers, $key: 3);
+}

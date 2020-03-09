@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center justify-content-center bg-{{ cssClass }}-200 shadow"
+    [style.width]="width"
+    [style.height]="height"
+    [style.overflow]="'hidden'"
+    [class.rounded]="rounded"
+>
+    <div class="text-uppercase font-weight-medium text-{{ cssClass }}"
+        [style.font-size]="fontSize"
+        [style.overflow]="'hidden'"
+        [class.rounded]="rounded"
+    >
+        <ng-content></ng-content>
+    </div>
+</div>

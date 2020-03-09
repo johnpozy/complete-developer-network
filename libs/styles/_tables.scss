@@ -1,0 +1,47 @@
+// stylelint-disable declaration-no-important, selector-max-type, selector-max-class, selector-max-compound-selectors, selector-max-combinators, selector-no-qualifying-type
+
+@import "~bootstrap-scss/tables";
+
+.table {
+  th,
+  td {
+    // min-height: $input-height;
+    // padding: $table-cell-padding;
+    vertical-align: middle;
+    // border-top: 1px solid rgba($border-color, 0.05);
+  }
+
+  thead th {
+    font-weight: $font-weight-medium;
+    vertical-align: middle;
+    border-bottom-width: 0;
+  }
+}
+
+.table-flush {
+  margin-bottom: 0;
+  border-width: 0;
+
+  &:first-child {
+    thead > tr > th {
+      border-top-width: 0;
+    }
+  }
+
+  td:first-child,
+  th:first-child {
+    border-left-width: 0;
+  }
+  td:last-child,
+  th:last-child {
+    border-right-width: 0;
+  }
+
+  thead > tr > th {
+    border-bottom-width: 0;
+  }
+
+  tbody > tr:last-child > td {
+    border-bottom-width: 0;
+  }
+}

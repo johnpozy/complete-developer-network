@@ -1,0 +1,32 @@
+// stylelint-disable declaration-no-important
+
+@import "~bootstrap-scss/utilities/text";
+
+@include text-emphasis-variant(".text-white", #fff);
+
+.font-weight-medium {
+  font-weight: $font-weight-medium !important;
+}
+
+.text-ellipsis-2 {
+  display: block;
+  height: ($font-size-base * $line-height-base) * 2;
+  overflow: hidden;
+  word-break: break-all;
+
+  &::after {
+    content: "...";
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @include color-variant(".text-#{$color}-100", theme-color-level($color, -12));
+  @include color-variant(".text-#{$color}-200", theme-color-level($color, -9));
+  @include color-variant(".text-#{$color}-300", theme-color-level($color, -6));
+  @include color-variant(".text-#{$color}-400", theme-color-level($color, -3));
+  @include color-variant(".text-#{$color}-500", theme-color-level($color, 0));
+  @include color-variant(".text-#{$color}-600", theme-color-level($color, 3));
+  @include color-variant(".text-#{$color}-700", theme-color-level($color, 6));
+  @include color-variant(".text-#{$color}-800", theme-color-level($color, 9));
+  @include color-variant(".text-#{$color}-900", theme-color-level($color, 12));
+}

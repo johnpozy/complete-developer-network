@@ -1,0 +1,14 @@
+@import "~bootstrap-scss/badge";
+
+.badge {
+  line-height: 12px;
+}
+
+.btn .badge.badge-float {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
+  min-width: 22px;
+  box-shadow: 0 0 0 2px #fff;
+}
