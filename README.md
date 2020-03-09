@@ -26,10 +26,10 @@ Environment configuration file for both application is located inside ```environ
 │   │           ├── environments.prod.ts
 │   │           └── environments.ts
 │   └── web/
-│   │   └── src/
-│   │       └── environments/
-│   │           ├── environments.prod.ts
-│   │           └── environments.ts
+│       └── src/
+│           └── environments/
+│               ├── environments.prod.ts
+│               └── environments.ts
 ├── libs/
 ├── tools/
 ├── nx.json
@@ -40,7 +40,7 @@ Environment configuration file for both application is located inside ```environ
 
 #### 1. Clone this repo
 ```bash
-git clone https://gitlab.com/johnpozy/complete-developer-network.git
+git clone https://github.com/johnpozy/complete-developer-network.git
 ```
 #### 2. Navigate to root folder and install all dependencies.
 Using Yarn
