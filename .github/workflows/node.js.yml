@@ -41,7 +41,7 @@ jobs:
       run: npm run build:production
 
     - name: Upload app artifact
-    - uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
         name: complete-developer-network
         path: dist/apps/web
