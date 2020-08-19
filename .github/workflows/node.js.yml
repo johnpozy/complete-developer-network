@@ -27,13 +27,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@v1
-    #   with:
-    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: us-east-2
-
     - name: Install all depedencies
       run: npm install
 
@@ -45,3 +38,14 @@ jobs:
       with:
         name: complete-developer-network
         path: dist/apps/web
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Copy files to the production website with the AWS CLI
+      run: |
+        aws s3 sync . s3://complete-developer-network
